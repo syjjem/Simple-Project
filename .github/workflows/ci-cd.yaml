@@ -32,33 +32,6 @@ jobs:
           version: 'v1.24.0' # default is latest stable
         id: install
 
-      - name: Setup OIDC
-        run: |
-          cluster_name=cluster-1
-          oidc_id=$(aws eks describe-cluster --name $cluster_name --query "cluster.identity.oidc.issuer" --output text | cut -d '/' -f 5)
-          aws iam list-open-id-connect-providers | grep $oidc_id | cut -d "/" -f4
-          eksctl utils associate-iam-oidc-provider --cluster $cluster_name --approve
-
-      - name: Create a Service Account
-        run: |
-          echo "Creating service account..."
-          cluster_name=cluster-1
-          eksctl create iamserviceaccount \ 
-          --name ebs-csi-controller-sa \
-          --namespace kube-system \
-          --cluster $cluster_name \
-          --role-name AmazonEKS_EBS_CSI_DriverRole \
-          --role-only \
-          --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy \
-          --approve
-
-      - name: Add the EBS-CSI addon
-        run: |
-          cluster_name=cluster-1
-          echo "Adding EBS-CSI addon..."
-          eksctl create addon --name aws-ebs-csi-driver --cluster $cluster_name \
-          --service-account-role-arn arn:aws:iam::813574331204:role/AmazonEKS_EBS_CSI_DriverRole --force
-
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
