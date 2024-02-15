@@ -42,14 +42,14 @@ jobs:
         env:
           IMAGE_NAME: update-testing
           VERSION: 1
-          USERNAME: syjjem
+          USERNAME: syjjem093
         run: |
           docker build -t $USERNAME/$IMAGE_NAME:$VERSION .
           docker push $USERNAME/$IMAGE_NAME:$VERSION
 
 
       - name: Update kube config
-        run: aws eks update-kubeconfig --name primuslearning
+        run: aws eks update-kubeconfig --name cluster-1
             
 
       - name: Install Helm
