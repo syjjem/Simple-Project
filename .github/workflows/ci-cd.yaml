@@ -41,7 +41,7 @@ jobs:
       - name: Build and Push Docker Image
         env:
           IMAGE_NAME: update-testing
-          VERSION: 1
+          VERSION: 2
           USERNAME: syjjem093
         run: |
           docker build -t $USERNAME/$IMAGE_NAME:$VERSION .
