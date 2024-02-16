@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: primuslearning
-          image: syjjem093:simplepersonal101
+          image: syjjem093:update-testing
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
