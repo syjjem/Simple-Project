@@ -52,17 +52,17 @@ jobs:
         run: aws eks update-kubeconfig --name cluster-1
             
 
-      # - name: Install Helm
-      #   run: |
-      #     helm template project project
-      #     helm install project project
+      - name: Install Helm
+        run: |
+          helm template project project
+          helm install project project
 
-      # - name: Install Prometheus
-      #   run: |
-      #     helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-      #     helm repo add stable https://charts.helm.sh/stable
-      #     helm repo update
-      #     helm install prometheus prometheus-community/prometheus
+      - name: Install Prometheus
+        run: |
+          helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+          helm repo add stable https://charts.helm.sh/stable
+          helm repo update
+          helm install prometheus prometheus-community/prometheus
      
       - name: Deploy to EKS
         run: |
