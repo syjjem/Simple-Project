@@ -53,8 +53,7 @@ jobs:
             
 
       - name: Install Helm
-        run: |
-          helm install project
+        run: | 
           helm template project project
           helm install project project
           helm upgrade project project
