@@ -62,7 +62,7 @@ jobs:
           
       - name: install bik
         run: |
-           helm create bik 
+           helm create bik
            helm template bik bik
            helm install bik bik  
           
